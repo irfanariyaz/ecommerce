@@ -1,0 +1,66 @@
+{% extends 'store/main.html'%}
+{% load static %}
+{% block content %}
+<!-- <div class="row ">
+
+
+    
+    <div class="col-lg-4 ">
+        <div class="card" style="width: 20rem; margin:0;">
+            <img  src="https://picsum.photos/640/360" class="card-img-top" alt="...">
+            <div class="card-body" >
+              <h5 class="card-title">Product</h5>
+              <hr>
+              <button class="btn btn-outline-secondary add-btn">Add to cart</button>
+              <a href="#" class="btn btn-outline-success">View</a>
+              <h2 class="float-end">$20</h2>
+            </div>
+           
+          </div>
+    </div>
+    <div class="col-4">
+        <div class="card" style="width: 20rem;">
+            <img src="https://picsum.photos/640/360" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Product</h5>
+              <hr>
+              <a href="#" class="btn btn-outline-primary">Add to cart</a>
+              <a href="#" class="btn btn-outline-success">View</a>
+            </div>
+          </div>
+    </div>
+    <div class="col-4">
+        <div class="card" style="width: 20rem;">
+            <img src="https://picsum.photos/640/360" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Product</h5>
+              <hr>
+              <a href="#" class="btn btn-outline-primary">Add to cart</a>
+              <a href="#" class="btn btn-outline-success">View</a>
+            </div>
+          </div>
+    </div>
+    
+</div> -->
+<div class="row ">
+{% for product in products %}
+
+    <div class="col-lg-4">
+        <img  class="thumbnail"src="{{product.imageURL}}" alt="">
+        <div class="box-element product">
+            <h6 ><strong>{{product.name}}</strong></h6>
+            <hr>
+            <button class="btn btn-outline-secondary add-btn update-cart" data-product ={{product.id}} data-action='add' >Add to cart</button>
+            <!-- we create custom attributes using data-attribute name = {value (if its a value taken from the model attributes)}} and just
+            data-attribute ='attribute name'-->
+            <a href="" class="btn btn-outline-success">View</a>
+            <h4 style="display: inline; float: right;"><strong>{{product.price|floatformat:2}}</strong></h4>
+        </div>
+
+    </div>
+    <br>
+  {% endfor %}
+</div>
+{% endblock content%}
+
+
