@@ -2,6 +2,7 @@ import imp
 from unicodedata import name
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse 
 
 # Create your models here.
 class Customer(models.Model):
@@ -17,8 +18,11 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=7,decimal_places=2)
     digital = models.BooleanField(default=False,null=True,blank=True)
     image = models.ImageField(null=True,blank = True)
+    description= models.TextField(max_length=500,null=True)
     def __str__(self):
         return self.name
+    class Meta:
+         ordering = ['name']
 
     @property
     def imageURL(self):
@@ -27,6 +31,8 @@ class Product(models.Model):
         except:
             url = ''
         return url
+    def get_absolute_url(self):
+        return reverse('product_details', args=[str(self.id)])
         
 class Order(models.Model):
     customer = models.ForeignKey(Customer,on_delete=models.SET_NULL,null=True,blank=True)

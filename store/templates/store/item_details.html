@@ -1,0 +1,20 @@
+{% extends 'store/main.html'%}
+{% load static %}
+{% block content %}
+<div class="product_detail">
+    <img class="large_image"src="{{product.imageURL}}" alt="">
+    <div class="product_content">
+        <h2>{{product.name}}</h2>
+        <h4>${{product.price}}</h4>
+        <hr>
+        <h5>About this item</h5>
+        <p>{{product.description}}</p>
+        <hr>
+        <a href="{% url 'store' %}" class="btn btn-outline-secondary add-btn update-cart" data-product ={{product.id}} data-action='add' >Add to cart</a>
+        <a href ="{% url 'store' %}"class="btn  btn-outline-dark"><span>&#10229;</span>Go Back</a>
+    </div>
+</div>
+
+
+
+{% endblock content%}

@@ -1,6 +1,5 @@
 
-from asyncio import ProactorEventLoop
-from itertools import product
+from django.views import generic
 from urllib import response
 from django.shortcuts import render
 from .models import *
@@ -60,6 +59,8 @@ def updateItem(request):
         orderitems.delete()
 
     return JsonResponse('item was added',safe=False)
+
+
 from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
 def proccessOrder(request):
@@ -95,3 +96,12 @@ def proccessOrder(request):
             )
 
     return JsonResponse('Payment complete',safe =False)
+
+
+def productDetail(request,pk):
+    product= Product.objects.get(pk=pk)
+    data = cartData(request)
+    cartTotal = data['cartTotal']
+    return render(request, 'store/item_details.html', context={'product': product,'cartTotal':cartTotal})
+
+    
