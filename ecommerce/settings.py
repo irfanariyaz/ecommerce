@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,13 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-di-p2v4)p$pbt28xs9nygpp-h&&t^fo58f28d3w8)^&@)^2!)('
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 ALLOWED_HOSTS = []
-
+SECRET_KEY =  os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-di-p2v4)p$pbt28xs9nygpp-h&&t^fo58f28d3w8)^&@)^2!)(')
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+ALLOWED_HOSTS = ['irfana-ecom.herokuapp.com','127.0.0.1']
 
 # Application definition
 
@@ -130,3 +130,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'static/images')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# Heroku: Update database configuration from $DATABASE_URL.
+import dj_database_url 
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
