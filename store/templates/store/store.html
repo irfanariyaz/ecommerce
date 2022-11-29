@@ -14,7 +14,7 @@
             <!-- we create custom attributes using data-attribute name = {value (if its a value taken from the model attributes)}} and just
             data-attribute ='attribute name'-->
             <a href="{{product.get_absolute_url}}" class="btn btn-outline-success">View</a>
-            <h4 style="display: inline; float: right;"><strong>{{product.price|floatformat:2}}</strong></h4>
+            <h4 style="display: inline; float: right;"><strong>${{product.price|floatformat:2}}</strong></h4>
         </div>
 
     </div>
