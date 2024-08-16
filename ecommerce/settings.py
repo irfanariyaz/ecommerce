@@ -29,7 +29,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
-ALLOWED_HOSTS = ['irfana-ecom.herokuapp.com','127.0.0.1','https://ecommerce-blm7.onrender.com']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
+#ALLOWED_HOSTS = ['irfana-ecom.herokuapp.com','127.0.0.1','https://ecommerce-blm7.onrender.com']
 
 # Application definition
 
